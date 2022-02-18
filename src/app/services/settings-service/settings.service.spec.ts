@@ -14,6 +14,9 @@ describe('SettingsService', () => {
     cookieService = TestBed.inject(CookieService);
     cookieService.removeCookie(service.userSettingsCookieName);
   });
+  afterEach(() => {
+    cookieService.removeCookie(service.userSettingsCookieName);
+  });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
@@ -22,15 +25,15 @@ describe('SettingsService', () => {
   describe('save user settings to cookies', () => {
     it('should save user settings to cookie', () => {
       const cookieToSave = {categories:['Sports', 'Business']};
-    
+
       service.userSettings = cookieToSave;
-      
+
       service.saveUserSettingsToCookie();
       const userSettings = cookieService.getCookie(service.userSettingsCookieName);
-      
+
       expect(userSettings).toEqual(cookieToSave);
     });
-    
+
     it('should return user settings from cookie', () => {
       const cookieToSave = {categories:['Sports', 'Business']};
       cookieService.setCookie(service.userSettingsCookieName, cookieToSave);
@@ -40,7 +43,7 @@ describe('SettingsService', () => {
       expect(service.userSettings).toEqual(cookieToSave);
     });
 
-    
+
 
   });
   describe('getUserSettings', () => {
@@ -48,12 +51,12 @@ describe('SettingsService', () => {
       const cookieToSave = {categories:['Sports', 'Business']};
       cookieService.setCookie(service.userSettingsCookieName, cookieToSave);
       const cookieServiceGetSpy = spyOn(cookieService, 'getCookie').and.callThrough();
-      
+
       const results = service.getUserSettings();
 
       expect(results).toEqual(cookieToSave);
       expect(cookieServiceGetSpy).toHaveBeenCalledTimes(1);
     });
   });
-  
+
 });

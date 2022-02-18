@@ -34,4 +34,13 @@ export class SettingsService {
     }
     return this.userSettings;
   }
+
+  setUserSettings(userSettings:UserSettings): void{
+    this.userSettings = userSettings;
+  }
+
+  saveUserSettingsAndSaveToCookie(userSettings: UserSettings): void{
+    this.setUserSettings(userSettings);
+    this.saveUserSettingsToCookie();
+  }
 }
