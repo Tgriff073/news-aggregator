@@ -1,6 +1,14 @@
-<div>
-  <button mat-button [matMenuTriggerFor]="menu">Categories</button>
-  <mat-menu #menu="matMenu">
-    <span mat-menu-item><mat-checkbox></mat-checkbox> </span>
-  </mat-menu>
+<div class="content">
+  <button [routerLink]="['/']" mat-button><mat-icon>arrow_back_ios</mat-icon></button>
+  <div class="categories">
+    <mat-label>Categories</mat-label>
+    <div>
+      <span class="categories-span" *ngFor="let category of settingsCategories; let i = index">
+        <mat-checkbox id="test-checkbox-{{category.name}}"(click)="checkedChange(settingsCategories, $event, i)">
+          {{category.name}}
+        </mat-checkbox>
+      </span>
+    </div>
+  </div>
+  <button mat-button id="test-save-button" (click)="saveSettings()">Save Settings</button>
 </div>
