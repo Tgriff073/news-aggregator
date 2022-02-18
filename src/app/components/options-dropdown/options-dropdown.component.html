@@ -1,4 +1,4 @@
 <button mat-icon-button [matMenuTriggerFor]="menu"> <mat-icon>more_vert</mat-icon></button>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>Item 1</button>
+  <a [routerLink]="['/settings']" mat-menu-item>Settings</a>
 </mat-menu>
